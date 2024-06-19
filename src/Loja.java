@@ -1,9 +1,9 @@
 public class Loja {
-    private String nome;
-    private int quantidadeFuncionarios;
-    private double salarioBaseFuncionario;
-    private Endereco endereco;
-    private Data dataFundacao;
+    protected String nome;
+    protected int quantidadeFuncionarios;
+    protected double salarioBaseFuncionario;
+    protected Endereco endereco;
+    protected Data dataFundacao;
     
     
 
@@ -83,6 +83,6 @@ public class Loja {
     @Override
     public String toString() {
         return "Loja [nome=" + nome + ", quantidadeFuncionarios=" + quantidadeFuncionarios + ", salarioBaseFuncionario="
-                + salarioBaseFuncionario;
+                + salarioBaseFuncionario + ", Endereco=" + endereco.toString() + ", dataFundacao = " + dataFundacao.toString();
     }
 }

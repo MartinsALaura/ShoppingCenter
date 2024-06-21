@@ -4,24 +4,26 @@ public class Loja {
     protected double salarioBaseFuncionario;
     protected Endereco endereco;
     protected Data dataFundacao;
-    
+    private Produto[] estoqueProdutos;
     
 
     public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco,
-            Data dataFundacao) {
+            Data dataFundacao, int quantidadeMaxProdutos) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = salarioBaseFuncionario;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[quantidadeMaxProdutos];
     }
 
-    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao) {
+    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao, int quantidadeMaxProdutos) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = -1;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[quantidadeMaxProdutos];
     }
 
     public String getNome() {
@@ -64,6 +66,14 @@ public class Loja {
         this.dataFundacao = dataFundacao;
     }
 
+    public Produto[] getEstoqueProdutos() {
+        return estoqueProdutos;
+    }
+
+    public void setEstoqueProdutos(Produto[] estoqueProdutos) {
+        this.estoqueProdutos = estoqueProdutos;
+    }
+
     public double gastosComSalario(){
         if(salarioBaseFuncionario > -1)
         return salarioBaseFuncionario * quantidadeFuncionarios;
@@ -80,9 +90,38 @@ public class Loja {
         return 'G';    
     }
 
+    public void imprimeProdutos(){
+        System.out.println("PRODUTOS:");
+        for(int i = 0; i < estoqueProdutos.length; i++){
+            if(estoqueProdutos[i] != null)
+                estoqueProdutos[i].toString();
+        }
+    }
+
+    public boolean insereProduto(Produto p){
+        for(int i = 0;  i < estoqueProdutos.length; i++){
+            if(estoqueProdutos[i] == null){
+                estoqueProdutos[i] = p;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean removeProduto(String nomeProduto){
+        for(int i = 0;  i < estoqueProdutos.length; i++){
+            if(estoqueProdutos[i] != null && estoqueProdutos[i].getNome() == nomeProduto){
+                estoqueProdutos[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Loja [nome=" + nome + ", quantidadeFuncionarios=" + quantidadeFuncionarios + ", salarioBaseFuncionario="
-                + salarioBaseFuncionario + ", Endereco=" + endereco.toString() + ", dataFundacao = " + dataFundacao.toString();
+                + salarioBaseFuncionario + ", Endereco=" + endereco.toString() + ", dataFundacao = " + dataFundacao.toString()
+                + ", estoqueProdutos=" + estoqueProdutos;
     }
 }

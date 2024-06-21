@@ -56,8 +56,11 @@ public class Principal {
 
         System.out.println("Informe o salário base dos funcionários (ou digite -1 se não especificado):");
         double salarioBaseFuncionario = teclado.nextDouble();
+
+        System.out.println("Informe a quatidade máxima do estoque de produtos:");
+        int qtdMaxProdutos = teclado.nextInt();
         
-        Loja loja = new Loja(nome, quantidadeFuncionarios, salarioBaseFuncionario, endereco, dataFundacao);
+        Loja loja = new Loja(nome, quantidadeFuncionarios, salarioBaseFuncionario, endereco, dataFundacao, qtdMaxProdutos);
         System.out.println("Loja criada.");
         teclado.close();
         return loja;
